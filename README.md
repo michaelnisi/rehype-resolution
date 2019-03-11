@@ -38,7 +38,7 @@ Here’s an examplary `unified` processor.
 ```js
 const assert = require('assert')
 const parse = require('rehype-parse')
-const resolution = require('./')
+const resolution = require('rehype-resolution')
 const stringify = require('rehype-stringify')
 const unified = require('unified')
 const { log } = console
