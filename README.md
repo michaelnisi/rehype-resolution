@@ -9,15 +9,13 @@ The [srcset](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-
 
 > If you're supporting multiple display resolutions, but everyone sees your image at the same real-world size on the screen, you can allow the browser to choose an appropriate resolution image by using srcset with x-descriptors and without sizes — a somewhat easier syntax!
 
-That’s the use case this plugin tries to cover, simply and pragmatically. Without image generation, of course, this is a parser plugin.
+The **rehype-resolution** plugin inserts a set of possible image sources (`@1x`, `@2x`, and `@3x`), following Apple’s naming convention for [image size and resolution](https://developer.apple.com/design/human-interface-guidelines/ios/icons-and-images/image-size-and-resolution/). Users have to produce these images and make them available at the according paths.
 
-**rehype-resolution** inserts a set of possible image sources (`@1x`, `@2x`, and `@3x`), following Apple’s naming convention for [image size and resolution](https://developer.apple.com/design/human-interface-guidelines/ios/icons-and-images/image-size-and-resolution/). Users have to produce these images and make them available at the according paths.
-
-The transformation is only applied for file names ending with `@1x.*`. That’s the marker for the transform.
+The transformation is only applied for file names ending with `@1x.*`. That’s the marker for the transform. Elements with an existing `srcset` attribute are ignored. 
 
 ## Inserting srcset into image element
 
-Let’s say we have produced our three images, `elva@1x.jpg`, `elva@2x.jpg`, and `elva@3x.jpg`. And placed them in our images directory. Let’s further assume our HTML was generated from Markdown leaving us with HTML like this.
+Let’s say we have produced our three images, `elva@1x.jpg`, `elva@2x.jpg`, and `elva@3x.jpg`. And placed them in our images directory. Let’s further assume, we don’t control the HTML source. Maybe it’s generated from Markdown, leaving us with HTML like this.
 
 ```html
 <img src="img/elva@1x.jpg" alt="Dressed as a fairy">
