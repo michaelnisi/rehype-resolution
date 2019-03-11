@@ -1,0 +1,38 @@
+{
+  "name": "rehype-resolution",
+  "version": "1.0.0",
+  "description": "Insert srcset attribute into img elements",
+  "main": "index.js",
+  "scripts": {
+    "test": "tap test.js --cov"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/michaelnisi/rehype-resolution.git"
+  },
+  "keywords": [
+    "unified",
+    "rehype",
+    "html",
+    "responsive",
+    "image",
+    "resolution",
+    "srcset"
+  ],
+  "author": "Michael Nisi (https://troubled.pro)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/michaelnisi/rehype-resolution/issues"
+  },
+  "homepage": "https://github.com/michaelnisi/rehype-resolution#readme",
+  "devDependencies": {
+    "rehype-parse": "^6.0.0",
+    "rehype-stringify": "^5.0.0",
+    "standard": "^12.0.1",
+    "tap": "^12.6.0",
+    "unified": "^7.1.0"
+  },
+  "dependencies": {
+    "unist-util-visit": "^1.4.0"
+  }
+}
