@@ -33,7 +33,7 @@ To let the browser pick the optimal image, this transform inserts the `srcset` a
 
 ## Example
 
-Here’s an examplary `unified` processor.
+Inserts `srcset` into HTML fragment.
 
 ```js
 const parse = require('rehype-parse')
