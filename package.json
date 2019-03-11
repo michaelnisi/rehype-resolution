@@ -1,6 +1,6 @@
 {
   "name": "rehype-resolution",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Insert srcset attribute into img elements",
   "main": "index.js",
   "scripts": {
