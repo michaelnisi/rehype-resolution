@@ -10,9 +10,9 @@ module.exports = resolution
 function transform (tree) {
 
   function visitor (node) {
-    const { tagName, properties: { src, srcSet }} = node
+    const { tagName, properties: { src, srcSet } } = node
 
-    if (node.tagName !== 'img' || typeof src !== 'string' || srcSet) return
+    if (tagName !== 'img' || typeof src !== 'string' || srcSet) return
 
     const { dir, ext, name } = path.parse(src)
     const found = name.split('@')
@@ -23,7 +23,7 @@ function transform (tree) {
     const id = found[0]
     const names = markers.map(x => path.join(dir, `${id}@${x}${ext} ${x}`))
 
-    node.properties.srcSet = `${names.join(',')}`
+    node.properties.srcSet = `${names.join(', ')}`
   }
 
   visit(tree, ['element'], visitor)
