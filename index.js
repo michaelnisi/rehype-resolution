@@ -21,9 +21,10 @@ function transform (tree) {
     if (found[1] !== markers[0]) return
 
     const id = found[0]
-    const names = markers.map(x => path.join(dir, `${id}@${x}${ext} ${x}`))
 
-    node.properties.srcSet = `${names.join(', ')}`
+    node.properties.srcSet = markers.map(x => {
+      return path.join(dir, `${id}@${x}${ext} ${x}`)
+    })
   }
 
   visit(tree, ['element'], visitor)
