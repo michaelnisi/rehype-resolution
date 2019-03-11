@@ -11,25 +11,38 @@ The [srcset](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-
 
 The **rehype-resolution** plugin inserts a set of possible image sources (`@1x`, `@2x`, and `@3x`), following Apple’s naming convention for [image size and resolution](https://developer.apple.com/design/human-interface-guidelines/ios/icons-and-images/image-size-and-resolution/). Users have to produce these images and make them available at the according paths.
 
-The transformation is only applied for file names ending with `@1x.*`. That’s the marker for the transform. Elements with an existing `srcset` attribute are ignored. 
+The transformation is only applied for file names ending with `@1x.*`. That’s the marker for the transform. Elements with an existing `srcset` attribute are ignored.
 
-## Inserting srcset into image element
+## Motivation
 
-Let’s say we have produced our three images, `elva@1x.jpg`, `elva@2x.jpg`, and `elva@3x.jpg`. And placed them in our images directory. Let’s further assume, we don’t control the HTML source. Maybe it’s generated from Markdown, leaving us with HTML like this.
+Generating a static website from Markdown, I want crisp images on all devices.
+
+## Inserting the srcset attribute
+
+We have an image at three resolutions, `elva@1x.jpg`, `elva@2x.jpg`, and `elva@3x.jpg`. Let’s assume we don’t control the HTML, maybe it’s generated from Markdown, leaving us with HTML like this.
 
 ```html
 <img src="img/elva@1x.jpg" alt="Dressed as a fairy">
 ```
 
-This transform inserts the `srcset` attribute for three resolutions, allowing  us to reference the image set using the `1x` name, in our Markdown or any HTML source.
+To let the browser pick the optimal image, this transform inserts the `srcset` attribute for three resolutions, allowing us to keep referencing the image with a single URI in our Markdown or whatever HTML source we might have.
 
 ```html
 <img srcset="img/elva@1x.jpg,img/elva@2x.jpg,img/elva@3x.jpg" src="img/elva@1x.jpg" alt="Dressed as a fairy">
 ```
 
-Here’s the **unified** processor.
+## Example
+
+Here’s an examplary `unified` processor.
 
 ```js
+const assert = require('assert')
+const parse = require('rehype-parse')
+const resolution = require('./')
+const stringify = require('rehype-stringify')
+const unified = require('unified')
+const { log } = console
+
 unified()
   .use(parse, {fragment: true})
   .use(resolution)
@@ -46,7 +59,7 @@ unified()
   })
 ```
 
-Try it.
+You find this example in this repo.
 
 ```
 $ node example.js
